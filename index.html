@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Swift Dot Net by TheDarkCode</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Swift Dot Net</h1>
+      <h2 class="project-tagline">Sample full application (client and back-end in separate projects) that demonstrates using Swift for iOS with ASP.NET 4.6.x Web API and MVC on Azure with DocumentDB and Azure Search.</h2>
+      <a href="https://github.com/TheDarkCode/swift-dot-net" class="btn">View on GitHub</a>
+      <a href="https://github.com/TheDarkCode/swift-dot-net/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/TheDarkCode/swift-dot-net/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="swift-dot-net" class="anchor" href="#swift-dot-net" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Swift Dot Net</h1>
+
+<p>Sample full application (client and back-end in separate projects) that demonstrates using Swift for iOS with ASP.NET 4.6.x Web API and MVC on Azure with DocumentDB and Azure Search.</p>
+
+<h4>
+<a id="azure-service-requirements-for-deployment" class="anchor" href="#azure-service-requirements-for-deployment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Azure Service Requirements for Deployment</h4>
+
+<p>You must configure the project with your own Azure Search Keys, Azure DocumentDB Database Connection Information, and Bing Maps API Keys.</p>
+
+<h6>
+<a id="if-you-are-new-to-azure-you-can-get-a-free-trial-at-the-following-link" class="anchor" href="#if-you-are-new-to-azure-you-can-get-a-free-trial-at-the-following-link" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>If you are new to Azure, you can get a free trial at the following link:</h6>
+
+<p><a href="https://azure.microsoft.com/en-us/pricing/free-trial/">https://azure.microsoft.com/en-us/pricing/free-trial/</a></p>
+
+<h6>
+<a id="bing-maps-api-10k-transactionsmo-for-free" class="anchor" href="#bing-maps-api-10k-transactionsmo-for-free" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bing Maps API (10k transactions/mo for free)</h6>
+
+<p><a href="http://www.microsoft.com/maps/Licensing/licensing.aspx#mainTab2">http://www.microsoft.com/maps/Licensing/licensing.aspx#mainTab2</a></p>
+
+<h6>
+<a id="azure-search-service-are-free-excluding-outbound-data-transfers-3-data-connections--indexes--indexers-50-mb-total-storage-10000-documents" class="anchor" href="#azure-search-service-are-free-excluding-outbound-data-transfers-3-data-connections--indexes--indexers-50-mb-total-storage-10000-documents" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Azure Search Service are free excluding outbound data transfers (3 data connections / indexes / indexers, 50 MB Total Storage, 10,000 Documents).</h6>
+
+<p><a href="https://azure.microsoft.com/en-us/pricing/details/search/">https://azure.microsoft.com/en-us/pricing/details/search/</a></p>
+
+<h6>
+<a id="azure-documentdb-requires-at-least-an-s1-plan-25mo--250-rusec-10-gb-storage-for-each-collection-used-even-empty-ones" class="anchor" href="#azure-documentdb-requires-at-least-an-s1-plan-25mo--250-rusec-10-gb-storage-for-each-collection-used-even-empty-ones" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Azure DocumentDB requires at least an S1 plan ($25/mo = 250 RU/sec, 10 GB Storage) for each collection used (even empty ones).</h6>
+
+<p><a href="https://azure.microsoft.com/en-us/pricing/details/documentdb/">https://azure.microsoft.com/en-us/pricing/details/documentdb/</a></p>
+
+<h6>
+<a id="data-transfers-pricing-details" class="anchor" href="#data-transfers-pricing-details" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data Transfers Pricing Details</h6>
+
+<p><a href="https://azure.microsoft.com/en-us/pricing/details/data-transfers/">https://azure.microsoft.com/en-us/pricing/details/data-transfers/</a></p>
+
+<h5>
+<a id="how-user-data-appears-on-docdb-server" class="anchor" href="#how-user-data-appears-on-docdb-server" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How User Data Appears on DocDB Server:</h5>
+
+<div class="highlight highlight-source-json"><pre>{
+  <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>463b5add-3abb-482c-8f72-9f199203e22b<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>UserName<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>demo@github.com<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>Email<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>demo@github.com<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>EmailConfirmed<span class="pl-pds">"</span></span>: <span class="pl-c1">true</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>PasswordHash<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>AMZO39oQGu9eUtMcy8gho6oPxETXQ8OPmeju7JEVMeHW7LgQi/hcnEATX7294xfBKg==<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>SecurityStamp<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>31a3e067-7508-41c4-acd5-d4311da67b2c<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>PhoneNumber<span class="pl-pds">"</span></span>: <span class="pl-c1">null</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>PhoneNumberConfirmed<span class="pl-pds">"</span></span>: <span class="pl-c1">false</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>TwoFactorEnabled<span class="pl-pds">"</span></span>: <span class="pl-c1">false</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>LockoutEnd<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>0001-01-01T00:00:00+00:00<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>LockoutEnabled<span class="pl-pds">"</span></span>: <span class="pl-c1">false</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>AccessFailedCount<span class="pl-pds">"</span></span>: <span class="pl-c1">0</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>Logins<span class="pl-pds">"</span></span>: [],
+  <span class="pl-s"><span class="pl-pds">"</span>Claims<span class="pl-pds">"</span></span>: [],
+  <span class="pl-s"><span class="pl-pds">"</span>Roles<span class="pl-pds">"</span></span>: []
+}</pre></div>
+
+<h2>
+<a id="related-github-projects--credits" class="anchor" href="#related-github-projects--credits" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Related GitHub Projects / Credits</h2>
+
+<h3>
+<a id="example-swift-apps-by-mark-hamilton-dryverless" class="anchor" href="#example-swift-apps-by-mark-hamilton-dryverless" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example Swift Apps by Mark Hamilton, Dryverless</h3>
+
+<p>Collection of example applications written in Swift / Objective-C for iOS 9.x (developed under 9.2.1 SDK - will be migrated to 9.3 when released)</p>
+
+<h6>
+<a id="httpsgithubcomthedarkcodeexample-swift-apps" class="anchor" href="#httpsgithubcomthedarkcodeexample-swift-apps" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/TheDarkCode/Example-Swift-Apps">https://github.com/TheDarkCode/Example-Swift-Apps</a>
+</h6>
+
+<h3>
+<a id="angularazuresearch-by-mark-hamilton-dryverless" class="anchor" href="#angularazuresearch-by-mark-hamilton-dryverless" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>AngularAzureSearch by Mark Hamilton, Dryverless</h3>
+
+<h6>
+<a id="httpsgithubcomthedarkcodeangularazuresearch" class="anchor" href="#httpsgithubcomthedarkcodeangularazuresearch" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/TheDarkCode/AngularAzureSearch/">https://github.com/TheDarkCode/AngularAzureSearch/</a>
+</h6>
+
+<h3>
+<a id="azure-search-demos-by-liam-cavanagh-microsoft" class="anchor" href="#azure-search-demos-by-liam-cavanagh-microsoft" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Azure Search Demos by Liam Cavanagh, Microsoft</h3>
+
+<h6>
+<a id="httpsgithubcomliamcaazuresearchdemos" class="anchor" href="#httpsgithubcomliamcaazuresearchdemos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/liamca/AzureSearchDemos">https://github.com/liamca/AzureSearchDemos</a>
+</h6>
+
+<h6>
+<a id="httpazuremicrosoftcomen-usdocumentationservicessearch" class="anchor" href="#httpazuremicrosoftcomen-usdocumentationservicessearch" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="http://azure.microsoft.com/en-us/documentation/services/search/">http://azure.microsoft.com/en-us/documentation/services/search/</a>
+</h6>
+
+<h3>
+<a id="documentdb-with-web-api-by-richard-j-leopold" class="anchor" href="#documentdb-with-web-api-by-richard-j-leopold" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>DocumentDb with Web API by Richard J. Leopold</h3>
+
+<h6>
+<a id="httpsgithubcomrleopolddocdbwebapi" class="anchor" href="#httpsgithubcomrleopolddocdbwebapi" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/rleopold/DocDbWebApi/">https://github.com/rleopold/DocDbWebApi/</a>
+</h6>
+
+<h6>
+<a id="article-found-here-http4rjlnetpostazure-documentdb-with-web-api" class="anchor" href="#article-found-here-http4rjlnetpostazure-documentdb-with-web-api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>(Article found here: <a href="http://4rjl.net/post/azure-documentdb-with-web-api">http://4rjl.net/post/azure-documentdb-with-web-api</a>)</h6>
+
+<h3>
+<a id="documentdbaspnetidentity-by-adrian-fernandez-microsoft" class="anchor" href="#documentdbaspnetidentity-by-adrian-fernandez-microsoft" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>DocumentDB.AspNet.Identity by Adrian Fernandez, Microsoft</h3>
+
+<h6>
+<a id="httpsgithubcomtracker086documentdbaspnetidentity" class="anchor" href="#httpsgithubcomtracker086documentdbaspnetidentity" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/tracker086/DocumentDB.AspNet.Identity">https://github.com/tracker086/DocumentDB.AspNet.Identity</a>
+</h6>
+
+<h3>
+<a id="golftrackerdocumentdb-by-king-wilder-gizmo-beach" class="anchor" href="#golftrackerdocumentdb-by-king-wilder-gizmo-beach" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>GolfTracker.DocumentDB by King Wilder, Gizmo Beach</h3>
+
+<h6>
+<a id="httpsgithubcomkahanugolftrackerdocumentdb" class="anchor" href="#httpsgithubcomkahanugolftrackerdocumentdb" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/kahanu/GolfTracker.DocumentDB/">https://github.com/kahanu/GolfTracker.DocumentDB/</a>
+</h6>
+
+<h6>
+<a id="video--article-series-found-here-httpwwwnosqlcentralnetstorydetailsvideoskahanu1-documentdb-golf-tracker-overview" class="anchor" href="#video--article-series-found-here-httpwwwnosqlcentralnetstorydetailsvideoskahanu1-documentdb-golf-tracker-overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>(Video / Article Series found here: <a href="http://www.nosqlcentral.net/Story/Details/videos/kahanu/1-documentdb-golf-tracker-overview">http://www.nosqlcentral.net/Story/Details/videos/kahanu/1-documentdb-golf-tracker-overview</a>)</h6>
+
+<h3>
+<a id="azure-documentdb-dotnet-by-ryan-crawcour--aravind-ramachandran-microsoft" class="anchor" href="#azure-documentdb-dotnet-by-ryan-crawcour--aravind-ramachandran-microsoft" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>azure-documentdb-dotnet by Ryan CrawCour &amp; Aravind Ramachandran, Microsoft</h3>
+
+<h6>
+<a id="httpsgithubcomazureazure-documentdb-dotnet" class="anchor" href="#httpsgithubcomazureazure-documentdb-dotnet" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/Azure/azure-documentdb-dotnet/">https://github.com/Azure/azure-documentdb-dotnet/</a>
+</h6>
+
+<h6>
+<a id="article-found-here-httpsazuremicrosoftcomen-usdocumentationarticlesdocumentdb-sharding" class="anchor" href="#article-found-here-httpsazuremicrosoftcomen-usdocumentationarticlesdocumentdb-sharding" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>(Article found here: <a href="https://azure.microsoft.com/en-us/documentation/articles/documentdb-sharding/">https://azure.microsoft.com/en-us/documentation/articles/documentdb-sharding/</a>)</h6>
+
+<h3>
+<a id="mailservice-by-james-bisiar" class="anchor" href="#mailservice-by-james-bisiar" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MailService by James Bisiar</h3>
+
+<h6>
+<a id="httpsgithubcombisiar" class="anchor" href="#httpsgithubcombisiar" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/bisiar">https://github.com/bisiar</a>
+</h6>
+
+<h3>
+<a id="mva-signalr-by-jon-galloway--brady-gaster-microsoft" class="anchor" href="#mva-signalr-by-jon-galloway--brady-gaster-microsoft" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MVA-SignalR by Jon Galloway &amp; Brady Gaster, Microsoft</h3>
+
+<h6>
+<a id="httpsgithubcomjongallowaymva-signalr" class="anchor" href="#httpsgithubcomjongallowaymva-signalr" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://github.com/jongalloway/MVA-SignalR">https://github.com/jongalloway/MVA-SignalR</a>
+</h6>
+
+<h2>
+<a id="helpful-links" class="anchor" href="#helpful-links" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Helpful Links</h2>
+
+<h6>
+<a id="httpblogsmsdncombdocumentdbarchive20141203scaling-a-multi-tenant-application-with-azure-documentdbaspx" class="anchor" href="#httpblogsmsdncombdocumentdbarchive20141203scaling-a-multi-tenant-application-with-azure-documentdbaspx" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="http://blogs.msdn.com/b/documentdb/archive/2014/12/03/scaling-a-multi-tenant-application-with-azure-documentdb.aspx">http://blogs.msdn.com/b/documentdb/archive/2014/12/03/scaling-a-multi-tenant-application-with-azure-documentdb.aspx</a>
+</h6>
+
+<h6>
+<a id="documentdb-documentation-httpsmsdnmicrosoftcomen-uslibraryazuredn781482aspx" class="anchor" href="#documentdb-documentation-httpsmsdnmicrosoftcomen-uslibraryazuredn781482aspx" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>DocumentDB Documentation: <a href="https://msdn.microsoft.com/en-us/library/azure/dn781482.aspx">https://msdn.microsoft.com/en-us/library/azure/dn781482.aspx</a>
+</h6>
+
+<h6>
+<a id="azure-search-documentation-httpsmsdnmicrosoftcomen-uslibraryazuredn798933aspx" class="anchor" href="#azure-search-documentation-httpsmsdnmicrosoftcomen-uslibraryazuredn798933aspx" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Azure Search Documentation: <a href="https://msdn.microsoft.com/en-us/library/azure/dn798933.aspx">https://msdn.microsoft.com/en-us/library/azure/dn798933.aspx</a>
+</h6>
+
+<h6>
+<a id="w3c-recommendation-on-cross-origin-resource-sharing-httpwwww3orgtrcors" class="anchor" href="#w3c-recommendation-on-cross-origin-resource-sharing-httpwwww3orgtrcors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>W3C Recommendation on Cross-Origin-Resource-Sharing: <a href="http://www.w3.org/TR/cors/">http://www.w3.org/TR/cors/</a>
+</h6>
+
+<h2>
+<a id="related-microsoft-virtual-academy-courses" class="anchor" href="#related-microsoft-virtual-academy-courses" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Related Microsoft Virtual Academy Courses</h2>
+
+<h4>
+<a id="adding-microsoft-azure-search-to-your-websites-and-apps" class="anchor" href="#adding-microsoft-azure-search-to-your-websites-and-apps" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adding Microsoft Azure Search to Your Websites and Apps:</h4>
+
+<h6>
+<a id="httpsmvamicrosoftcomen-ustraining-coursesadding-microsoft-azure-search-to-your-websites-and-apps-10540" class="anchor" href="#httpsmvamicrosoftcomen-ustraining-coursesadding-microsoft-azure-search-to-your-websites-and-apps-10540" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://mva.microsoft.com/en-us/training-courses/adding-microsoft-azure-search-to-your-websites-and-apps-10540">https://mva.microsoft.com/en-us/training-courses/adding-microsoft-azure-search-to-your-websites-and-apps-10540</a>
+</h6>
+
+<h4>
+<a id="developing-solutions-with-azure-documentdb" class="anchor" href="#developing-solutions-with-azure-documentdb" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Developing Solutions with Azure DocumentDB:</h4>
+
+<h6>
+<a id="httpsmvamicrosoftcomen-ustraining-coursesdeveloping-solutions-with-azure-documentdb-10554" class="anchor" href="#httpsmvamicrosoftcomen-ustraining-coursesdeveloping-solutions-with-azure-documentdb-10554" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://mva.microsoft.com/en-us/training-courses/developing-solutions-with-azure-documentdb-10554">https://mva.microsoft.com/en-us/training-courses/developing-solutions-with-azure-documentdb-10554</a>
+</h6>
+
+<h4>
+<a id="lighting-up-real-time-web-communications-with-signalr" class="anchor" href="#lighting-up-real-time-web-communications-with-signalr" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Lighting Up Real-Time Web Communications with SignalR:</h4>
+
+<h6>
+<a id="httpsmvamicrosoftcomen-ustraining-courseslighting-up-real-time-web-communications-with-signalr-8358" class="anchor" href="#httpsmvamicrosoftcomen-ustraining-courseslighting-up-real-time-web-communications-with-signalr-8358" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://mva.microsoft.com/en-us/training-courses/lighting-up-real-time-web-communications-with-signalr-8358">https://mva.microsoft.com/en-us/training-courses/lighting-up-real-time-web-communications-with-signalr-8358</a>
+</h6>
+
+<h2>
+<a id="support" class="anchor" href="#support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support:</h2>
+
+<h5>
+<a id="send-any-questions-or-requests-to-supportdryverlesscom" class="anchor" href="#send-any-questions-or-requests-to-supportdryverlesscom" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Send any questions or requests to: <a href="mailto:support@dryverless.com">support@dryverless.com</a>
+</h5>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributing</h2>
+
+<ul>
+<li>1) Fork this repository!</li>
+<li>2) Create your feature branch: <code>git checkout -b Your-New-Feature</code>
+</li>
+<li>3) Commit your changes: <code>git commit -am 'Adding some super awesome update'</code>
+</li>
+<li>4) Push to the branch: <code>git push origin Your-New-Feature</code>
+</li>
+<li>5) Submit a pull request!</li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>Copyright (c) 2016 Mark Hamilton / dryverless (<a href="http://www.dryverless.com">http://www.dryverless.com</a>)</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/TheDarkCode/swift-dot-net">Swift Dot Net</a> is maintained by <a href="https://github.com/TheDarkCode">TheDarkCode</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
