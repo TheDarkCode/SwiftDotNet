@@ -10,6 +10,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using SwiftDotNet.WebAPI.Models;
+using SwiftDotNet.WebAPI.Helpers;
 
 namespace SwiftDotNet.WebAPI.Providers
 {
