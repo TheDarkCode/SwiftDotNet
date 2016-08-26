@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using SwiftDotNet.WebAPI.Models;
 using SwiftDotNet.WebAPI.Providers;
 using SwiftDotNet.WebAPI.Results;
+using SwiftDotNet.WebAPI.Helpers;
 
 namespace SwiftDotNet.WebAPI.Controllers
 {
@@ -114,7 +115,52 @@ namespace SwiftDotNet.WebAPI.Controllers
             };
         }
 
+        /// <summary>
+        /// Deletes the selected user from the database. If not an admin, it will only delete your individual account.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>An HTTP Status code - 200 (OK) or 400 (Bad Request)</returns>
+        [Authorize]
+        [Route("DeleteUser")]
+        public async Task<IHttpActionResult> DeleteUser(DeleteUserBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                if (User.Identity.GetUserId() != model.Email || User.IsInRole("Admin"))
+                {
+                    return BadRequest("Unauthorized request.");
+                }
+
+                var user = await UserManager.FindByNameAsync(model.Email);
+
+                if (user == null)
+                {
+                    return BadRequest("No user with input Id.");
+                }
+
+                var result = await UserManager.DeleteAsync(user);
+
+                return Ok(result.Succeeded);
+
+            }
+
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         // POST api/Account/ChangePassword
+        /// <summary>
+        /// Changes a user's password.
+        /// </summary>
+        /// <param name="model">With email and confirmed new password.</param>
+        /// <returns></returns>
         [Route("ChangePassword")]
         public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
         {
@@ -122,16 +168,26 @@ namespace SwiftDotNet.WebAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
-                model.NewPassword);
-            
-            if (!result.Succeeded)
+            try
             {
-                return GetErrorResult(result);
+                IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
+    model.NewPassword);
+
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
+
+                return Ok();
             }
 
-            return Ok();
+            catch (Exception)
+            {
+
+                throw;
+
+            }
+
         }
 
         // POST api/Account/SetPassword
@@ -371,6 +427,104 @@ namespace SwiftDotNet.WebAPI.Controllers
                 return GetErrorResult(result); 
             }
             return Ok();
+        }
+
+        /// <summary>
+        /// Takes the email address which will send an email to the user 
+        /// with a link to the ResetPassword form.
+        /// </summary>
+        /// <param name="model">With email address.</param>
+        /// <returns></returns>
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("ForgotPassword")]
+        public async Task<IHttpActionResult> ForgotPassword(ForgotPasswordBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+
+                return BadRequest("Please enter a valid email.");
+
+            }
+            try
+            {
+
+                var user = await UserManager.FindByEmailAsync(model.Email);
+                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                {
+                    // Don't reveal that the user does not exist or is not confirmed
+                    //return View("ForgotPasswordConfirmation");
+                    //ModelState.AddModelError("", "Email is not confirmed.");
+                    //return BadRequest(ModelState);
+                    return Ok();
+                }
+
+                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                // Send an email with this link
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                string clientSite = AppSettingsConfig.ClientSite;
+
+                var callbackUrl = clientSite + "/#/resetpassword?userId=" + user.Id + "&code=" + code;
+
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", callbackUrl);
+                return Ok();
+
+            }
+
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Take the ResetPassword form data to reset the password.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>An HTTP Status code - 200 (OK) or 400 (Bad Request)</returns>
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("ResetPassword")]
+        public async Task<IHttpActionResult> ResetPassword(ResetPasswordBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var user = await UserManager.FindByNameAsync(model.Email);
+                if (user == null)
+                {
+                    // Don't reveal that the user does not exist
+                    //return BadRequest(ModelState);
+                    return Ok("Failed");
+                }
+
+                //var passwordHash = UserManager.PasswordHasher.HashPassword(model.Password);
+
+                //string resetToken = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+
+                // UrlDecode the token
+                var code = HttpUtility.UrlDecode(model.Code);
+
+                // IMPORTANT STEP!!! The UrlDecode removes all '+' from the 
+                // originally generated token and replaces it with spaces ' '.
+                // We have to put the + signs back.
+                code = code.Replace(' ', '+');
+
+                var result = await UserManager.ResetPasswordAsync(user.Id, code, model.Password);
+
+                return Ok(result.Succeeded);
+
+            }
+
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         protected override void Dispose(bool disposing)
