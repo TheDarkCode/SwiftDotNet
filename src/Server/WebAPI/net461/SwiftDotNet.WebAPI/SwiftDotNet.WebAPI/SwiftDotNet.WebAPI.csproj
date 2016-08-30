@@ -389,6 +389,7 @@
     <Compile Include="Helpers\DocumentClientHelper.cs" />
     <Compile Include="Helpers\DocumentCollectionSpec.cs" />
     <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\IdentityExtensions.cs" />
     <Compile Include="Helpers\UnixDateTimeConverter.cs" />
     <Compile Include="Hubs\AnalyticsHub.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
