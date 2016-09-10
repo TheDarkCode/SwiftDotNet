@@ -527,6 +527,73 @@ namespace SwiftDotNet.WebAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// This confirms the registration code for the new user.
+        /// </summary>
+        /// <param name="userId">The UserId for the registering user.</param>
+        /// <param name="code">The code used to validate the registration.</param>
+        /// <returns></returns>
+        [Route("ConfirmEmail")]
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IHttpActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return BadRequest("UserId and/or Code is missing.");
+            }
+            try
+            {
+                // UrlDecode the token
+                code = HttpUtility.UrlDecode(code);
+
+                // IMPORTANT STEP!!! The UrlDecode removes all '+' from the 
+                // originally generated token and replaces it with spaces ' '.
+                // We have to put the + signs back.
+                code = code.Replace(' ', '+');
+
+                // Now confirm the email and it should work!
+                var result = await UserManager.ConfirmEmailAsync(userId, code);
+                if (result.Succeeded)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return GetErrorResult(result);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+        [AllowAnonymous]
+        [Route("ResendConfirmEmail")]
+        public async Task<IHttpActionResult> ResendConfirmEmail(ResendConfirmEmailBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = await UserManager.FindByNameAsync(model.Email);
+
+            await UserManager.UpdateSecurityStampAsync(user.Id);
+            string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            code = HttpUtility.UrlEncode(code);
+            string clientSite = AppSettingsConfig.ClientSite;
+            var callbackUrl = clientSite + "/#/confirmemail?userId=" + user.Id + "&code=" + code;
+
+            await UserManager.SendEmailAsync(user.Id, "Confirm your account", callbackUrl);
+
+            return Ok();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)
