@@ -1,12 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SwiftDotNet.WebAPI.Entities.Analytics;
+using SwiftDotNet.WebAPI.Helpers;
 
 namespace SwiftDotNet.WebAPI.Repositories
 {
-    class AnalyticRepository
+    public class AnalyticRepository : RepositoryBase<Analytic>, IAnalyticRepository
     {
+        public AnalyticRepository() : base("analytic", AppSettingsConfig.Db, AppSettingsConfig.MainCollection)
+        {
+
+        }
     }
 }
