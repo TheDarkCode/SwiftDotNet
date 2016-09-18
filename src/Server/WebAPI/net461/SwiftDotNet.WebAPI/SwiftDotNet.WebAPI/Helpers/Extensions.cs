@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.UI;
 
@@ -42,6 +43,28 @@ namespace SwiftDotNet.WebAPI.Helpers
             {
                 return s;
             }
+        }
+
+        public static void RemoveAt<T>(ref T[] arr, int index)
+        {
+            for (int a = index; a < arr.Length - 1; a++)
+            {
+                arr[a] = arr[a + 1];
+            }
+            Array.Resize(ref arr, arr.Length - 1);
+        }
+
+        public static string RemoveBetween(string s, char begin, char end)
+        {
+            Regex regex = new Regex(string.Format("\\{0}.*?\\{1}", begin, end));
+            return regex.Replace(s, string.Empty);
+        }
+
+        public static string ExtractString(string s, string begin, string end)
+        {
+            int startIndex = s.IndexOf(begin) + begin.Length;
+            int endIndex = s.IndexOf(end, startIndex);
+            return s.Substring(startIndex, endIndex - startIndex);
         }
 
         /// <summary>
