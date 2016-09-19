@@ -1,7 +1,7 @@
-﻿[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(DryverlessAds.AffiliateApi.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(DryverlessAds.AffiliateApi.App_Start.NinjectWebCommon), "Stop")]
+﻿[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(SwiftDotNet.WebAPI.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(SwiftDotNet.WebAPI.App_Start.NinjectWebCommon), "Stop")]
 
-namespace DryverlessAds.AffiliateApi.App_Start
+namespace SwiftDotNet.WebAPI.App_Start
 {
     using System;
     using System.Web;
