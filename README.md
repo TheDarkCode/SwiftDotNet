@@ -1,7 +1,5 @@
 # Swift Dot Net
-Sample full application (client and back-end in separate projects) that demonstrates using Swift for iOS with ASP.NET 4.6.x Web API and MVC on Azure with DocumentDB and Azure Search.
-
-The back-end will eventually include samples written in C# targeting .NET's Roslyn compiler. iOS client is written in Swift 2.x with attention given to deprecated APIs that will not be available in Swift 3.
+Sample full application (client and back-end in separate projects) that demonstrates using Swift 3 for iOS with ASP.NET 4.6.x Web API and MVC on Azure with DocumentDB and Azure Search.
 
 Real-time support is handled via websockets and SignalR for the purposes of demonstration. If you choose to use a backplane, you should be aware of latency or cost issues that might be incurred.
 
