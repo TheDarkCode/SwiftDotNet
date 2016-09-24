@@ -57,6 +57,7 @@ namespace SwiftDotNet.WebAPI.Models
         public string Email { get; set; }
 
         [Required]
+        [RegularExpression(@"^(?=.*[A-Z])(?=.*[!@#$&*%^()])(?=.*[0-9])(?=.*[a-z]).{6,100}$", ErrorMessage = "Passwords require the following: uppercase character, lowercase character, symbol, and number.")]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
