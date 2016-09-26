@@ -383,6 +383,7 @@
     <Compile Include="Controllers\api\AdminController.cs" />
     <Compile Include="Controllers\api\AnalyticsController.cs" />
     <Compile Include="Controllers\api\MessagesController.cs" />
+    <Compile Include="Controllers\api\ToolsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Cors\CorsPolicyFactory.cs" />
     <Compile Include="Cors\CustomCorsPolicyProvider.cs" />
@@ -390,10 +391,12 @@
     <Compile Include="Entities\Analytics\Analytic.cs" />
     <Compile Include="Entities\EntityBase.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
+    <Compile Include="Extensions\RequestExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AppSettingsConfig.cs" />
+    <Compile Include="Helpers\Crawlers.cs" />
     <Compile Include="Helpers\DocumentClientHashPartitioningManager.cs" />
     <Compile Include="Helpers\DocumentClientHelper.cs" />
     <Compile Include="Helpers\DocumentCollectionSpec.cs" />
@@ -520,7 +523,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49021</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
