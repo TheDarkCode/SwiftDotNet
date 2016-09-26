@@ -94,7 +94,7 @@ namespace SwiftDotNet.WebAPI
         }
 
         #region Private Methods
-        public static string ExtractString(string s, string begin, string end)
+        private static string ExtractString(string s, string begin, string end)
         {
             int startIndex = s.IndexOf(begin) + begin.Length;
             int endIndex = s.IndexOf(end, startIndex);

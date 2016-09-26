@@ -47,7 +47,30 @@ namespace DryverlessAds.AdminApi.Controllers.api
         [HttpGet]
         [AllowAnonymous]
         [Route("IsSiteDown")]
-        public async Task<IHttpActionResult> GetIsSiteDown(string domain)
+        public async Task<IHttpActionResult> PingIsSiteDown(string url)
+        {
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
+                request.Timeout = 3000;
+                request.AllowAutoRedirect = false; // Do Not Follow Redirects
+                request.Method = "HEAD";
+
+                using (var response = await request.GetResponseAsync())
+                {
+                    return Ok(true);
+                }
+            }
+            catch
+            {
+                return Ok(false);
+            }
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("CrawlIsSiteDown")]
+        public async Task<IHttpActionResult> CrawlIsSiteDown(string domain)
         {
             try
             {
