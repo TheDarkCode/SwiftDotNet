@@ -382,6 +382,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\AdminController.cs" />
     <Compile Include="Controllers\api\AnalyticsController.cs" />
+    <Compile Include="Controllers\api\MailController.cs" />
     <Compile Include="Controllers\api\MessagesController.cs" />
     <Compile Include="Controllers\api\ToolsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -402,6 +403,7 @@
     <Compile Include="Helpers\DocumentCollectionSpec.cs" />
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\IdentityExtensions.cs" />
+    <Compile Include="Helpers\MessageTemplates.cs" />
     <Compile Include="Helpers\UnixDateTimeConverter.cs" />
     <Compile Include="Hubs\AnalyticsHub.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
@@ -410,6 +412,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminBindingModels.cs" />
     <Compile Include="Models\AdminViewModels.cs" />
+    <Compile Include="Models\ContactModels.cs" />
     <Compile Include="Models\DateEpoc.cs" />
     <Compile Include="Models\GeobytesModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
