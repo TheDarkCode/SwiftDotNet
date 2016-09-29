@@ -13,7 +13,6 @@ namespace SwiftDotNet.WebAPI.Repositories
     /// <summary>
     /// This is the DocumentDB client class that the RepositoryBase class
     /// will inherit to consume the properties.
-    /// Disposable commented out to force a single client for each application instance.
     /// </summary>
     public class DocumentDbClient //: Disposable
     {
@@ -21,12 +20,18 @@ namespace SwiftDotNet.WebAPI.Repositories
 
         private Database _database;
 
+        private readonly string _endpoint;
+
+        private readonly string _authkey;
+
         private readonly string _dbName;
 
         private readonly string _collectionName;
 
-        public DocumentDbClient(string dbName, string collectionName)
+        public DocumentDbClient(string dbName, string collectionName, string endpoint = null, string authkey = null)
         {
+            this._endpoint = endpoint ?? AppSettingsConfig.EndPoint;
+            this._authkey = authkey ?? AppSettingsConfig.AuthKey;
             this._dbName = dbName;
             this._collectionName = collectionName;
         }
@@ -42,12 +47,12 @@ namespace SwiftDotNet.WebAPI.Repositories
             {
                 if (_client == null)
                 {
-                    // This could be handled differently.
-                    string endpoint = AppSettingsConfig.EndPoint;
-                    string authkey = AppSettingsConfig.AuthKey;
+                    //// This could be handled differently.
+                    //string endpoint = AppSettingsConfig.EndPoint;
+                    //string authkey = AppSettingsConfig.AuthKey;
 
-                    Uri endpointUri = new Uri(endpoint);
-                    _client = new DocumentClient(endpointUri, authkey);
+                    Uri endpointUri = new Uri(_endpoint);
+                    _client = new DocumentClient(endpointUri, _authkey);
                 }
                 return _client;
             }

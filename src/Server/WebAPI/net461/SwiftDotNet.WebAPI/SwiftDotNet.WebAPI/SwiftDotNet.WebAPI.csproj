@@ -391,6 +391,7 @@
     <Compile Include="Cors\SignalRCorsPolicyProvider.cs" />
     <Compile Include="Entities\Analytics\Analytic.cs" />
     <Compile Include="Entities\EntityBase.cs" />
+    <Compile Include="Extensions\DateExtensions.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
     <Compile Include="Extensions\RequestExtensions.cs" />
     <Compile Include="Global.asax.cs">

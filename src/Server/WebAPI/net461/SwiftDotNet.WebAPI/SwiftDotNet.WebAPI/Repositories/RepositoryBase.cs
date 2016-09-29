@@ -25,11 +25,13 @@ namespace SwiftDotNet.WebAPI.Repositories
         /// <summary>
         /// All Repository classes must inherit this base class.
         /// </summary>
-        /// <param name="type">The name of the entity (T), which is the same as the name passed into the model (lowercase).</param>
+        /// <param name="type">The name of the entity (T), which is the same as the name passed into the model (lowercase). Used as the partition key.</param>
         /// <param name="dbName">The name of the database.</param>
         /// <param name="collectionName">The name of the collection.</param>
-        public RepositoryBase(string type, string dbName, string collectionName)
-            : base(dbName, collectionName)
+        /// <param name="endpoint">The URI of the DocumentDB server used for this repository (https://{DATABASENAME}.documents.azure.com:443).</param>
+        /// <param name="authkey">The Auth Key for the DocumentDB server (Primary or Secondary Admin).</param>
+        public RepositoryBase(string type, string dbName, string collectionName, string endpoint = null, string authkey = null)
+            : base(dbName, collectionName, endpoint, authkey)
         {
             _typePredicate = v => v.docType == type;
         }

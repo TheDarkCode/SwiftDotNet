@@ -10,6 +10,11 @@ namespace SwiftDotNet.WebAPI.Helpers
     class AppSettingsConfig
     {
         /// <summary>
+        /// The comma separated string of whitelisted IPs for the API.
+        /// </summary>
+        public static string IPWhitelist { get { return ConfigurationManager.AppSettings["ipWhitelist"]; } }
+
+        /// <summary>
         /// The name of the DocumentDB database.
         /// </summary>
         public static string Db { get { return ConfigurationManager.AppSettings["db"]; } }
@@ -32,6 +37,11 @@ namespace SwiftDotNet.WebAPI.Helpers
         /// passing the string directly in quotes.
         /// </summary>
         public static string MainCollection { get { return ConfigurationManager.AppSettings["mainCollection"]; } }
+
+        /// <summary>
+        /// The DocumentDB collection (name) used as a partitioned collection.
+        /// </summary>
+        public static string PartitionedCollection { get { return ConfigurationManager.AppSettings["partitionedCollection"]; } }
 
         /// <summary>
         /// The DocumentDB endpoint Uri.
