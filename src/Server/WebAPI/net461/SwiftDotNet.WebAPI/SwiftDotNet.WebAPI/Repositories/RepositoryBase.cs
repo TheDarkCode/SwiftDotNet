@@ -47,7 +47,7 @@ namespace SwiftDotNet.WebAPI.Repositories
         /// <returns>An IEnumerable of T.</returns>
         public IEnumerable<T> Get(Expression<Func<T, bool>> predicate = null)
         {
-            var query = Client.CreateDocumentQuery<T>(Collection.DocumentsLink)
+            var query = Client.CreateDocumentQuery<T>(Collection.DocumentsLink, new FeedOptions { MaxItemCount = -1, EnableCrossPartitionQuery = true })
                 .Where(_typePredicate)
                 .AsQueryable();
 
@@ -63,7 +63,7 @@ namespace SwiftDotNet.WebAPI.Repositories
         public Task<T> GetById(string id)
         {
             return Task<T>.Run(() =>
-                Client.CreateDocumentQuery<T>(Collection.DocumentsLink)
+                Client.CreateDocumentQuery<T>(Collection.DocumentsLink, new FeedOptions { MaxItemCount = -1, EnableCrossPartitionQuery = true })
                 .Where(_typePredicate)
                 .Where(p => p.Id == id)
                 .AsEnumerable()
@@ -73,7 +73,7 @@ namespace SwiftDotNet.WebAPI.Repositories
         public async Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> predicate = null)
         {
 
-            var query = Client.CreateDocumentQuery<T>(Collection.DocumentsLink)
+            var query = Client.CreateDocumentQuery<T>(Collection.DocumentsLink, new FeedOptions { MaxItemCount = -1, EnableCrossPartitionQuery = true })
                         .Where(_typePredicate); //AsQueryable()
 
             if (predicate != null)
