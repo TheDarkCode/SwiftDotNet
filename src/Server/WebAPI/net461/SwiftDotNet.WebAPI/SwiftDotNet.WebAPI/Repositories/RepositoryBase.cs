@@ -21,6 +21,7 @@ namespace SwiftDotNet.WebAPI.Repositories
         #region ctors
 
         private Expression<Func<T, bool>> _typePredicate = null;
+        private string _type = "";
 
         /// <summary>
         /// All Repository classes must inherit this base class.
@@ -34,6 +35,7 @@ namespace SwiftDotNet.WebAPI.Repositories
             : base(dbName, collectionName, endpoint, authkey)
         {
             _typePredicate = v => v.docType == type;
+            _type = type;
         }
 
         #endregion
@@ -117,7 +119,7 @@ namespace SwiftDotNet.WebAPI.Repositories
         {
             var doc = GetDocument(id);
 
-            return await Client.DeleteDocumentAsync(doc.SelfLink);
+            return await Client.DeleteDocumentAsync(doc.SelfLink, new RequestOptions { PartitionKey = new PartitionKey(_type) });
         }
 
 

@@ -16,7 +16,7 @@ namespace SwiftDotNet.WebAPI.Models
         public string LastName { get; set; }
         
         // Partitioning Key
-        public string docType { get; set; }
+        public string docType { get; set; } // { get { return "user"; } }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
