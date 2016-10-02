@@ -399,7 +399,6 @@
     </Compile>
     <Compile Include="Helpers\AppSettingsConfig.cs" />
     <Compile Include="Helpers\Crawlers.cs" />
-    <Compile Include="Helpers\DocumentClientHashPartitioningManager.cs" />
     <Compile Include="Helpers\DocumentClientHelper.cs" />
     <Compile Include="Helpers\DocumentCollectionSpec.cs" />
     <Compile Include="Helpers\Extensions.cs" />
@@ -408,7 +407,6 @@
     <Compile Include="Helpers\UnixDateTimeConverter.cs" />
     <Compile Include="Hubs\AnalyticsHub.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
-    <Compile Include="Initializers\PartitionInitializers.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminBindingModels.cs" />
@@ -419,14 +417,6 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LocationModels.cs" />
     <Compile Include="Models\RegionModels.cs" />
-    <Compile Include="PartitionRepositories\Disposable.cs" />
-    <Compile Include="PartitionRepositories\DocumentDbPartitioningClient.cs" />
-    <Compile Include="PartitionResolvers\EnumLookupPartitionResolver.cs" />
-    <Compile Include="PartitionResolvers\LookupPartitionResolver.cs" />
-    <Compile Include="PartitionResolvers\ManagedHashPartitionResolver.cs" />
-    <Compile Include="PartitionResolvers\SpilloverPartitionResolver.cs" />
-    <Compile Include="PartitionResolvers\TransitionHashPartitionResolver.cs" />
-    <Compile Include="PartitionResolvers\TransitionReadMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Repositories\AnalyticRepository.cs" />

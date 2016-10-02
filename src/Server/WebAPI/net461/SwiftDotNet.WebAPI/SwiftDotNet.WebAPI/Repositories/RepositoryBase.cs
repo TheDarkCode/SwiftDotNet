@@ -59,7 +59,6 @@ namespace SwiftDotNet.WebAPI.Repositories
             }
 
             return query;
-            //return await Task<IEnumerable<T>>.Run(() => query.AsEnumerable().ToList());
         }
 
         public Task<T> GetById(string id)
@@ -76,7 +75,7 @@ namespace SwiftDotNet.WebAPI.Repositories
         {
 
             var query = Client.CreateDocumentQuery<T>(Collection.DocumentsLink, new FeedOptions { MaxItemCount = -1, EnableCrossPartitionQuery = true })
-                        .Where(_typePredicate); //AsQueryable()
+                        .Where(_typePredicate);
 
             if (predicate != null)
             {
@@ -86,7 +85,7 @@ namespace SwiftDotNet.WebAPI.Repositories
             //return query;
             try
             {
-                var result = await QueryAsync(query.AsQueryable()); // await QueryAsync(query); //Task.Run(async() => query.AsEnumerable());
+                var result = await QueryAsync(query.AsQueryable());
 
                 if (result == null)
                 {
