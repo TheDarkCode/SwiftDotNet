@@ -412,7 +412,7 @@
     <Compile Include="Models\AdminBindingModels.cs" />
     <Compile Include="Models\AdminViewModels.cs" />
     <Compile Include="Models\ContactModels.cs" />
-    <Compile Include="Models\DateEpoc.cs" />
+    <Compile Include="Models\DateEpoch.cs" />
     <Compile Include="Models\GeobytesModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LocationModels.cs" />
