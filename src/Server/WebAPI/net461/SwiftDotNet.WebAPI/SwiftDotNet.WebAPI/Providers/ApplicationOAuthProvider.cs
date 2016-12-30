@@ -95,6 +95,12 @@ namespace SwiftDotNet.WebAPI.Providers
                     context.SetError("lockout_enabled", message);
                     return;
                 }
+                // If user not subject to lockout restrictions, check password.
+                else if (validCredentials == null)
+                {
+                    context.SetError("invalid_grant", "The user name or password is incorrect.");
+                    return;
+                }
                 // I needed to add this in order to check if the email was confirmed when a user log on.
                 else if (!user.EmailConfirmed)
                 {
