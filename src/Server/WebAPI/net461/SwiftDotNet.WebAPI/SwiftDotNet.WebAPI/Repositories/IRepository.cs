@@ -16,7 +16,12 @@ namespace SwiftDotNet.WebAPI.Repositories
         Task<Microsoft.Azure.Documents.Client.ResourceResponse<Microsoft.Azure.Documents.Document>> CreateDocumentAsync(T entity);
         Task<Microsoft.Azure.Documents.Client.ResourceResponse<Microsoft.Azure.Documents.Document>> DeleteDocumentAsync(string id);
         IEnumerable<T> Get(Expression<Func<T, bool>> predicate = null);
+        Task<IEnumerable<T>> GetAsyncOrderByDescending(Expression<Func<T, bool>> predicate = null, Expression<Func<T, dynamic>> ordering = null, int take = 0);
+        Task<IEnumerable<T>> GetAsyncOrderBy(Expression<Func<T, bool>> predicate = null, Expression<Func<T, dynamic>> ordering = null, int take = 0);
+        Task<IEnumerable<dynamic>> GetAsyncWithSelect(Expression<Func<T, bool>> predicate = null, Func<T, dynamic> selector = null, int take = 0);
+        Task<IEnumerable<T>> GetByPredicate(Expression<Func<T, bool>> predicate, int take = 0);
         Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> predicate = null);
+        Task<T> GetFirstByPredicate(Expression<Func<T, bool>> predicate);
         Task<T> GetById(string id);
         Document GetDocument(string id);
         Task<Microsoft.Azure.Documents.Client.ResourceResponse<Microsoft.Azure.Documents.Document>> UpdateDocumentAsync(T entity);
