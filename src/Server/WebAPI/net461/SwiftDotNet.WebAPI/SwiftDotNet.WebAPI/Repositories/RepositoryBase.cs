@@ -71,7 +71,47 @@ namespace SwiftDotNet.WebAPI.Repositories
                 .FirstOrDefault());
         }
 
-        public async Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> predicate = null)
+        public Task<T> GetFirstByPredicate(Expression<Func<T, bool>> predicate)
+        {
+            return Task<T>.Run(() =>
+                Client.CreateDocumentQuery<T>(Collection.DocumentsLink, new FeedOptions { MaxItemCount = -1, EnableCrossPartitionQuery = true })
+                .Where(_typePredicate)
+                .Where(predicate)
+                .AsEnumerable()
+                .FirstOrDefault());
+        }
+
+        public async Task<IEnumerable<T>> GetByPredicate(Expression<Func<T, bool>> predicate, int take = 0)
+        {
+            var query = Client.CreateDocumentQuery<T>(Collection.DocumentsLink, new FeedOptions { MaxItemCount = -1, EnableCrossPartitionQuery = true })
+                .Where(_typePredicate)
+                .Where(predicate);
+
+
+            if (take != 0)
+            {
+                query = query.Take(take);
+            }
+
+            try
+            {
+                var result = await QueryAsync(query.AsQueryable());
+
+                if (result == null)
+                {
+                    throw new Exception("GetByPredicate result was null");
+                }
+
+                return result;
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> predicate = null, int take = 0)
         {
 
             var query = Client.CreateDocumentQuery<T>(Collection.DocumentsLink, new FeedOptions { MaxItemCount = -1, EnableCrossPartitionQuery = true })
@@ -82,7 +122,11 @@ namespace SwiftDotNet.WebAPI.Repositories
                 query = query.Where(predicate);
             }
 
-            //return query;
+            if (take != 0)
+            {
+                query = query.Take(take);
+            }
+
             try
             {
                 var result = await QueryAsync(query.AsQueryable());
@@ -90,6 +134,121 @@ namespace SwiftDotNet.WebAPI.Repositories
                 if (result == null)
                 {
                     throw new Exception("GetAsync result was null");
+                }
+
+                return result;
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        public async Task<IEnumerable<dynamic>> GetAsyncWithSelect(Expression<Func<T, bool>> predicate = null, Func<T, dynamic> selector = null, int take = 0)
+        {
+
+            var query = Client.CreateDocumentQuery<T>(Collection.DocumentsLink, new FeedOptions { MaxItemCount = -1, EnableCrossPartitionQuery = true })
+                     .Where(_typePredicate);
+
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+
+            if (take != 0)
+            {
+                query = query.Take(take);
+            }
+
+            try
+            {
+                var result = await QueryAsyncWithSelect(query.AsQueryable(), selector);
+
+                if (result == null)
+                {
+                    throw new Exception("GetAsyncWithSelect result was null");
+                }
+
+                return result;
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        public async Task<IEnumerable<T>> GetAsyncOrderBy(Expression<Func<T, bool>> predicate = null, Expression<Func<T, dynamic>> ordering = null, int take = 0)
+        {
+
+            var query = Client.CreateDocumentQuery<T>(Collection.DocumentsLink, new FeedOptions { MaxItemCount = -1, EnableCrossPartitionQuery = true })
+                        .Where(_typePredicate);
+
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+
+            if (take != 0)
+            {
+                query = query.Take(take);
+            }
+
+            if (ordering != null)
+            {
+                query = query.OrderBy(ordering);
+            }
+
+            try
+            {
+                var result = await QueryAsync(query.AsQueryable());
+
+                if (result == null)
+                {
+                    throw new Exception("GetAsyncOrderBy result was null");
+                }
+
+                return result;
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        public async Task<IEnumerable<T>> GetAsyncOrderByDescending(Expression<Func<T, bool>> predicate = null, Expression<Func<T, dynamic>> ordering = null, int take = 0)
+        {
+
+            var query = Client.CreateDocumentQuery<T>(Collection.DocumentsLink, new FeedOptions { MaxItemCount = -1, EnableCrossPartitionQuery = true })
+                        .Where(_typePredicate);
+
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+
+            if (take != 0)
+            {
+                query = query.Take(take);
+            }
+
+            if (ordering != null)
+            {
+                query = query.OrderByDescending(ordering);
+            }
+
+            try
+            {
+                var result = await QueryAsync(query.AsQueryable());
+
+                if (result == null)
+                {
+                    throw new Exception("GetAsyncOrderByDescending result was null");
                 }
 
                 return result;
@@ -141,6 +300,25 @@ namespace SwiftDotNet.WebAPI.Repositories
             while (documentQuery.HasMoreResults);
 
             var documents = results.SelectMany(b => b);
+
+            return documents;
+        }
+
+        public async Task<IEnumerable<dynamic>> QueryAsyncWithSelect(IQueryable<T> query, Func<T, dynamic> selector)
+        {
+            var documentQuery = query.AsDocumentQuery();
+            var results = new List<IEnumerable<T>>();
+
+            do
+            {
+                var result = await documentQuery.ExecuteNextAsync<T>();
+
+                results.Add(result);
+            }
+
+            while (documentQuery.HasMoreResults);
+
+            var documents = results.SelectMany(b => b).Select(selector);
 
             return documents;
         }
