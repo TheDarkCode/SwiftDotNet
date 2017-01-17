@@ -1,0 +1,19 @@
+﻿{
+    "copyright": "Copyright © Mark Hamilton 2017",
+  "version": "1.0.0-*",
+
+    "dependencies": {
+        "Microsoft.Azure.DocumentDB.Core": "1.0.0",
+        "NETStandard.Library": "1.6.0",
+        "Newtonsoft.Json": "9.0.1",
+        "System.ComponentModel.Annotations": "4.1.0",
+        "System.Runtime.Serialization.Json": "4.0.1",
+        "System.Runtime.Serialization.Primitives": "4.1.1"
+    },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}
