@@ -1,6 +1,11 @@
 # Swift Dot Net
 Sample full application (client and back-end in separate projects) that demonstrates using Swift 3 for iOS with ASP.NET 4.6.x Web API and MVC on Azure with DocumentDB and Azure Search.
 
+####Recent Updates (1/17/17):
+- Added .NET Core Project (No Identity or SignalR, yet.)
+- Added .NET Core Extensions Class Library
+- Added .NET Core DocumentDB Class Library
+
 Real-time support is handled via websockets and SignalR for the purposes of demonstration. If you choose to use a backplane, you should be aware of latency or cost issues that might be incurred.
 
 If you looking for a fully-supported development framework for quickly launching mobile applications, please e-mail: sales@dryverless.com. Ask for a license to use the Ahtau Framework.
@@ -110,7 +115,7 @@ Collection of example applications written in Swift / Objective-C for iOS 9.x (d
   - 5) Submit a pull request!
 
 ## License
-Copyright (c) 2016 Mark Hamilton / dryverless (http://www.dryverless.com)
+Copyright (c) 2016-2017 Mark Hamilton / dryverless (http://www.dryverless.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
