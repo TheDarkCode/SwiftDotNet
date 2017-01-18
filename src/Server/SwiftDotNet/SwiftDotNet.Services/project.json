@@ -1,0 +1,20 @@
+﻿{
+  "version": "1.0.0-*",
+
+    "dependencies": {
+        "NETStandard.Library": "1.6.0",
+        "Microsoft.AspNetCore.Http.Features": "1.1.0",
+        "WindowsAzure.Storage": "8.0.1",
+        "MailKit": "1.10.1"
+    },
+
+  "frameworks": {
+    "netstandard1.6": {
+        "imports": 
+        [
+            "dnxcore50",
+            "portable-net45+win8"
+        ]
+    }
+  }
+}

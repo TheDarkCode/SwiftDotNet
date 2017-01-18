@@ -25,7 +25,13 @@
         "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
         "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
         "SwiftDotNet.DocumentDB": "1.0.0-*",
-        "SwiftDotNet.Extensions": "1.0.0-*"
+        "SwiftDotNet.Extensions": "1.0.0-*",
+        "SwiftDotNet.Crawlers": "1.0.0-*",
+        "SwiftDotNet.Search": "1.0.0-*",
+        "SwiftDotNet.Services": "1.0.0-*",
+        "SwiftDotNet.Templates": "1.0.0-*",
+        "Microsoft.AspNetCore.Authorization": "1.1.0",
+        "System.Net.Requests": "4.3.0"
     },
 
   "tools": {

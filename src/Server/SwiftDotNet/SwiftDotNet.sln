@@ -11,6 +11,12 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SwiftDotNet.DocumentDB", "S
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SwiftDotNet.Extensions", "SwiftDotNet.Extensions\SwiftDotNet.Extensions.xproj", "{F902F04D-0A6E-42CC-8B64-6C9CBFDBA6C8}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SwiftDotNet.Templates", "SwiftDotNet.Templates\SwiftDotNet.Templates.xproj", "{3AE8746C-D58D-4991-B993-134CA1590351}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SwiftDotNet.Crawlers", "SwiftDotNet.Crawlers\SwiftDotNet.Crawlers.xproj", "{94BD3EB5-66DB-4BEB-B2B1-31D9887E976E}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SwiftDotNet.Services", "SwiftDotNet.Services\SwiftDotNet.Services.xproj", "{8CB6490C-C308-4329-92DA-6E028C9CC387}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +39,18 @@ Global
 		{F902F04D-0A6E-42CC-8B64-6C9CBFDBA6C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F902F04D-0A6E-42CC-8B64-6C9CBFDBA6C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F902F04D-0A6E-42CC-8B64-6C9CBFDBA6C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AE8746C-D58D-4991-B993-134CA1590351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AE8746C-D58D-4991-B993-134CA1590351}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AE8746C-D58D-4991-B993-134CA1590351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AE8746C-D58D-4991-B993-134CA1590351}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94BD3EB5-66DB-4BEB-B2B1-31D9887E976E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94BD3EB5-66DB-4BEB-B2B1-31D9887E976E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94BD3EB5-66DB-4BEB-B2B1-31D9887E976E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94BD3EB5-66DB-4BEB-B2B1-31D9887E976E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CB6490C-C308-4329-92DA-6E028C9CC387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CB6490C-C308-4329-92DA-6E028C9CC387}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CB6490C-C308-4329-92DA-6E028C9CC387}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CB6490C-C308-4329-92DA-6E028C9CC387}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
