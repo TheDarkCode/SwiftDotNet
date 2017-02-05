@@ -1,7 +1,13 @@
-# Swift Dot Net
+# Swift.Net
 Sample full application (client and back-end in separate projects) that demonstrates using Swift 3 for iOS with ASP.NET 4.6.x Web API and MVC on Azure with DocumentDB and Azure Search.
 
-####Recent Updates (1/17/17):
+####Recent Updates
+
+###(2/5/17):
+- Added Singleton DocumentClient with Ninject and .NET Core Examples
+- Update Namespace to Swift.Net
+
+###(1/17/17):
 - Added .NET Core Project (No Identity or SignalR, yet.)
 - Added .NET Core Extensions Class Library
 - Added .NET Core DocumentDB Class Library
